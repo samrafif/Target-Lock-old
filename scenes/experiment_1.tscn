@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://chwmddm8glim0"]
+
+[ext_resource type="Script" path="res://scripts/RigidBody3D_rotex.gd" id="1_dhsnr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_euf74"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ascjd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gdas"]
+albedo_color = Color(0.242008, 2.31028e-05, 0.943103, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7lr8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qkbsv"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("1_dhsnr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_euf74")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/MeshInstance3D"]
+transform = Transform3D(0.3, 0, 0, 0, -4.00353e-08, -0.3, 0, 0.9159, -1.31134e-08, 0, 0, 0.766474)
+mesh = SubResource("CylinderMesh_ascjd")
+surface_material_override/0 = SubResource("StandardMaterial3D_6gdas")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D/MeshInstance3D"]
+transform = Transform3D(-1.31134e-08, 0.9159, -1.31134e-08, 0, -4.00353e-08, -0.3, -0.3, -4.00353e-08, 5.73206e-16, 0.972388, 0, 0.00150001)
+mesh = SubResource("CylinderMesh_ascjd")
+surface_material_override/0 = SubResource("StandardMaterial3D_v7lr8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_qkbsv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.18698)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.972796, 0.157078, 0.170277, -0.231663, 0.659599, 0.715026, -2.03649e-09, -0.735021, 0.678044, 4.34044, 2.72485, 0)
